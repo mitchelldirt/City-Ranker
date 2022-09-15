@@ -3,16 +3,17 @@ import reactLogo from './assets/react.svg'
 
 import './App.css'
 const pexelsAPI = import.meta.env.VITE_PEXELS_API
-
 fetch(
-  "https://api.pexels.com/v1/search?query=people", 
+  "https://api.pexels.com/v1/search?query=minneapolis", 
   {
     headers: {
       Authorization: `${pexelsAPI}`
     }
   }
 ).then(res => {
-  console.log(res)
+  return res.json()
+}).then(jsonRes => {
+  console.log(jsonRes)
 })
 
 
