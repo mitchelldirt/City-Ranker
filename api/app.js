@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/google/geocode', googleAPIRouter);
 app.use('/pexels/image', pexelsAPIRouter);
-app.use('/walkscore/scores', walkscoreAPIRouter);
+app.use('/walkscore', walkscoreAPIRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

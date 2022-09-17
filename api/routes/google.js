@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const fetch = require('node-fetch');
+require('dotenv').config();
 
 router.get('/:address', function (req, res, next) {
 
-    let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${req.params.address}&key=AIzaSyDkJCkdqhEg7a21pzd39GZ3UaqFFyp59C4`;
+    let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${req.params.address}&key=${process.env.GOOGLE}`;
 
     let options = { method: 'GET' };
 
