@@ -7,7 +7,7 @@ import getWalkscore from './services/walkscore'
 import './App.css'
 
 
-console.log(getWalkscore('Seattle WA', '47.6062095', '-122.3320708'))
+
 
 function App() {
 
