@@ -1,18 +1,13 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-const pexelsAPI = import.meta.env.VITE_PEXELS_API
-const googleAPI = import.meta.env.VITE_GOOGLE_API
-const walkscoreAPI = import.meta.env.VITE_WALKSCORE_API
+import getGeoInformation from './services/geocode'
+import getImage from './services/getImage'
+import getWalkscore from './services/walkscore'
 
 import './App.css'
 
-function callAPI() {
-  fetch('http://localhost:9000/testAPI')
-    .then(res => res.text())
-    .then(res => console.log(res));
-}
 
-callAPI()
+console.log(getWalkscore('Seattle WA', '47.6062095', '-122.3320708'))
 
 function App() {
 
