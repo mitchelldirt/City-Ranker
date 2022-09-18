@@ -3,7 +3,7 @@ export default async function getGeoInformation(address) {
         const response = await fetch(`http://localhost:9000/google/geocode/${address}`)
         let json = await response.json()
         // return only what information is necessary
-        return await {
+        return {
             address: json.results[0].formatted_address,
             latitude: json.results[0].geometry.location.lat,
             longitude: json.results[0].geometry.location.lng
