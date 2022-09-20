@@ -6,10 +6,10 @@ import Header from './components/header/header'
 import Footer from './components/footer/footer'
 import SearchBar from './components/main/searchBar'
 import CityInformation from './components/main/cityRow/cityInformation'
+import Score from './components/main/cityRow/scores/scores'
 
 import './App.css'
 
-console.log(getWalkscore('Seattle WA', '47.6085', '-122.3295'))
 
 function App() {
 
@@ -17,6 +17,12 @@ function App() {
     <div className="App">
       <Header />
       <SearchBar />
+      <Score 
+      percent={180}
+      />
+      <Score 
+      percent={90}
+      />
       <CityInformation />
       <Footer />
     </div>
