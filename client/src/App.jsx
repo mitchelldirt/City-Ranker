@@ -7,6 +7,7 @@ import Footer from './components/footer/footer'
 import SearchBar from './components/main/searchBar'
 import CityInformation from './components/main/cityRow/cityInformation'
 import Score from './components/main/cityRow/scores/scores'
+import { keyframes, css } from 'styled-components'
 
 import './App.css'
 
@@ -17,11 +18,8 @@ function App() {
     <div className="App">
       <Header />
       <SearchBar />
-      <Score 
-      percent={180}
-      />
-      <Score 
-      percent={90}
+      <Score
+        percent={90}
       />
       <CityInformation />
       <Footer />
