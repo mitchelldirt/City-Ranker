@@ -1,4 +1,4 @@
-export default function CityInformation() {
+export default function CityInformation({imgURL, cityName}) {
     const divStyles = {
         height: '100px',
         width: '100px'
@@ -6,8 +6,8 @@ export default function CityInformation() {
     return (
         <>
 
-            <img />
-            <p></p>
+            <img src={imgURL} />
+            <p>{cityName}</p>
 
         </>
     )

@@ -16,16 +16,16 @@ function AnimationDiv({ classNames, rotation, childComponent }) {
   );
 }
 
-export default function Score({ percent }) {
+export default function Score({ degrees, percent }) {
   return (
     <>
       <div className="circle-wrap">
         <div className="circle">
-          <AnimationDiv rotation={percent} classNames={"mask full"} childComponent={<AnimationDiv rotation={percent} classNames={"fill"} />} />
+          <AnimationDiv rotation={degrees} classNames={"mask full"} childComponent={<AnimationDiv rotation={degrees} classNames={"fill"} />} />
           <div className="mask half">
-            <AnimationDiv rotation={percent} classNames={"fill"} />
+            <AnimationDiv rotation={degrees} classNames={"fill"} />
           </div>
-          <div className="inside-circle"> 75% </div>
+          <div className="inside-circle"> {percent} </div>
         </div>
       </div>
     </>

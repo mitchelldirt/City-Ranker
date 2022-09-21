@@ -5,9 +5,7 @@ import getWalkscore from './services/walkscore'
 import Header from './components/header/header'
 import Footer from './components/footer/footer'
 import SearchBar from './components/main/searchBar'
-import CityInformation from './components/main/cityRow/cityInformation'
-import Score from './components/main/cityRow/scores'
-import { keyframes, css } from 'styled-components'
+import CityRow from './components/main/cityRow/cityRow'
 
 import './App.css'
 
@@ -18,16 +16,7 @@ function App() {
     <div className="App">
       <Header />
       <SearchBar />
-      <Score
-        percent={90}
-      />
-      <Score
-        percent={180}
-      />
-      <Score
-        percent={45}
-      />
-      <CityInformation />
+      <CityRow imgURL={'https://images.pexels.com/photos/8536720/pexels-photo-8536720.jpeg?auto=compress&cs=tinysrgb&h=130'} cityName={'Portland OR, USA'} walkScore={67} bikeScore={49} transitScore={83} />
       <Footer />
     </div>
   )
