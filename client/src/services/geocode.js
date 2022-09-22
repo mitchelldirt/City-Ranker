@@ -9,6 +9,6 @@ export default async function getGeoInformation(address) {
             longitude: json.results[0].geometry.location.lng
         }
     } catch(error) {
-return [];
+return error;
     }
 }

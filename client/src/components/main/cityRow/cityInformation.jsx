@@ -3,10 +3,15 @@ export default function CityInformation({imgURL, cityName}) {
         height: '100px',
         width: '100px'
     }
+
+    const imageStyles = {
+        width: '200px',
+        height: '200px'
+    }
     return (
         <>
 
-            <img src={imgURL} />
+            <img style={imageStyles} src={imgURL} />
             <p>{cityName}</p>
 
         </>
