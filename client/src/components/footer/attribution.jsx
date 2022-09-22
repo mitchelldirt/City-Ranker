@@ -1,4 +1,4 @@
-export default function Attribution() {
+export default function Attribution({ text, resourceSrc, imgSrc }) {
     const imageStyles = {
         width: '150px',
         height: '50px'
@@ -6,9 +6,8 @@ export default function Attribution() {
 
     return (
         <>
-            <a href="https://www.pexels.com">
-                <img style={imageStyles} src="https://images.pexels.com/lib/api/pexels.png" />
-            </a>
+            <p>{text}<a href={resourceSrc} target='_blank'><img src={imgSrc} /></a></p>
+            <p></p>
         </>
     )
 }

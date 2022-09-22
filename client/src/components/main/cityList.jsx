@@ -65,6 +65,9 @@ export default function CityList() {
                 onChange={e => setName(e.target.value)}
             />
             <button onClick={async () => {
+                if (name === '') {
+                    return;
+                }
                 setName('');
                 let city = await createCityObject(name);
                 console.log(city)
