@@ -9,15 +9,17 @@ let nextId = 0;
 // Use the user input (should be a city name) to call 3 APIs and create the city object
 async function createCityObject(userInput) {
     let googleResponse = await getGeoInformation(userInput);
-    let imageURL = await getImage(googleResponse.address);
+    console.log(googleResponse)
+    let imageURL = await getImage(`${googleResponse.address} City`);
     let scores = await getWalkscore(googleResponse.address, googleResponse.latitude, googleResponse.longitude);
 
-    let city =  {
+    let city = {
         imageURL: imageURL,
         cityName: googleResponse.address,
         walkScore: scores.walkScore,
         bikeScore: scores.bikeScore,
-        transitScore: +scores.transitScore
+        transitScore: +scores.transitScore,
+        id: nextId++
     }
 
     return city;
@@ -26,6 +28,27 @@ async function createCityObject(userInput) {
 export default function CityList() {
     const [name, setName] = useState('');
     const [cities, setCities] = useState([])
+
+    function handleDelete(badCity) {
+
+    }
+
+    function handleUpShift(movingCity) {
+        let insertAt = cities.indexOf(movingCity) - 1;
+        if (indexOfMovingCity => 0) {
+            const nextCity = [
+                ...cities.slice(0, insertAt),
+                movingCity,
+                ...cities.slice(insertAt)
+            ]
+            setCities(nextCity);
+        }
+        return;
+    }
+
+    function handleDownShift() {
+
+    }
 
     return (
         <>
@@ -36,7 +59,6 @@ export default function CityList() {
             <button onClick={async () => {
                 setName('');
                 let city = await createCityObject(name);
-                city.id = nextId++
                 console.log(city)
                 setCities([
                     ...cities,
@@ -44,11 +66,31 @@ export default function CityList() {
                 ]);
             }}>Add</button>
 
-        <div>
-            {cities.map(city => (
-                <CityRow key={city.id} imgURL={city.imageURL} cityName={city.cityName} walkScore={city.walkScore} bikeScore={city.bikeScore} transitScore={city.transitScore} />
-            ))}
-        </div>
+            <div>
+                {cities.map((city) => (
+                    <li key={city.id} >
+                        <CityRow
+                            imgURL={city.imageURL}
+                            cityName={city.cityName}
+                            walkScore={city.walkScore}
+                            bikeScore={city.bikeScore}
+                            transitScore={city.transitScore} />
+                            <button onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}>Delete</button>
+                            <button onClick={() => {
+                                let insertAt = cities.indexOf(city) - 1;
+                                if (insertAt => 0) {
+                                    const nextCity = [
+                                        ...cities.slice(0, insertAt),
+                                        city,
+                                        ...cities.slice(insertAt)
+                                    ]
+                                    setCities(nextCity);
+                                }
+                                return;
+                            }}>Up Shift</button>
+                    </li>
+                ))}
+            </div>
         </>
     )
 }

@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <CityList />
+      <CityList key="cityList"/>
       <Footer />
     </div>
   )
