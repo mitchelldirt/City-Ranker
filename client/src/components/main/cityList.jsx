@@ -88,8 +88,9 @@ export default function CityList() {
 
                         <button onClick={() => {
                             let insertAt = cities.indexOf(city) - 1;
+                            console.log(insertAt)
                             let nextCities = [...cities]
-                            if (insertAt => 0) {
+                            if (insertAt !== -1) {
                                 nextCities.splice(cities.indexOf(city), 1);
                                 nextCities.splice(insertAt, 0, city);
                                 setCities(nextCities);
