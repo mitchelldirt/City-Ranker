@@ -54,42 +54,43 @@ export default function CityList() {
                     ...cities,
                     city
                 ]);
-            }}>Add</button>
+            }}><img style={{width: '30px'}} src='/src/assets/addButton.svg' /></button>
 
             <div>
                 {cities.map((city) => (
-                    <li key={city.id} >
+                    <li  className='card' key={city.id} >
+                        <button onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img src='src/assets/delete.svg' /></button>
+
+                        <div className='cardNav'>
+                            <button onClick={() => {
+                                let insertAt = cities.indexOf(city) - 1;
+                                console.log(insertAt)
+                                let nextCities = [...cities]
+                                if (insertAt !== -1) {
+                                    nextCities.splice(cities.indexOf(city), 1);
+                                    nextCities.splice(insertAt, 0, city);
+                                    setCities(nextCities);
+                                }
+                                return;
+                            }}><img src='/src/assets/upArrow.svg' /></button>
+                            <button onClick={() => {
+                                let insertAt = cities.indexOf(city) + 1;
+                                let nextCities = [...cities]
+                                if (insertAt < cities.length) {
+                                    nextCities.splice(cities.indexOf(city), 1);
+                                    nextCities.splice(insertAt, 0, city);
+                                    setCities(nextCities);
+                                }
+                                return;
+                            }}><img src='/src/assets/downArrow.svg' /></button>
+
+                        </div>
                         <CityRow
                             imgURL={city.imageURL}
                             cityName={city.cityName}
                             walkScore={city.walkScore}
                             bikeScore={city.bikeScore}
                             transitScore={city.transitScore} />
-
-                        <button onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}>Delete</button>
-
-                        <button onClick={() => {
-                            let insertAt = cities.indexOf(city) - 1;
-                            console.log(insertAt)
-                            let nextCities = [...cities]
-                            if (insertAt !== -1) {
-                                nextCities.splice(cities.indexOf(city), 1);
-                                nextCities.splice(insertAt, 0, city);
-                                setCities(nextCities);
-                            }
-                            return;
-                        }}>Up Shift</button>
-                        <button onClick={() => {
-                            let insertAt = cities.indexOf(city) + 1;
-                            let nextCities = [...cities]
-                            if (insertAt < cities.length) {
-                                nextCities.splice(cities.indexOf(city), 1);
-                                nextCities.splice(insertAt, 0, city);
-                                setCities(nextCities);
-                            }
-                            return;
-                        }}>Down Shift</button>
-
                     </li>
                 ))}
             </div>

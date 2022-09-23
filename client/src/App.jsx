@@ -13,8 +13,10 @@ function App() {
 
   return (
     <div className="App">
+      <div className='wrapper'>
       <Header />
       <CityList key="cityList"/>
+  </div>
       <Footer />
     </div>
   )

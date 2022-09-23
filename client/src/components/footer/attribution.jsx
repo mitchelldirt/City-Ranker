@@ -8,9 +8,8 @@ export default function Attribution({resourceSrc, imgSrc }) {
         fontSize: '1.5rem'
     }
     return (
-        <>
-            <a href={resourceSrc} target='_blank'>
-                <img style={imageStyles} src={imgSrc} /></a>
+        <>      
+                <img style={imageStyles} src={imgSrc} />
         </>
     )
 }

@@ -4,7 +4,8 @@ import Score from './scores'
 export default function CityRow({ imgURL, cityName, walkScore, bikeScore, transitScore }) {
     const cityCard = {
         display: 'flex',
-        border: '2px solid gray'
+        border: '2px solid gray',
+        height: 'fit-content'
     }
     
     return (
