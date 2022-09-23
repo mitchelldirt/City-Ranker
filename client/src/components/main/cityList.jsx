@@ -37,27 +37,6 @@ export default function CityList() {
     const [name, setName] = useState('');
     const [cities, setCities] = useState(testCityList)
 
-    function handleDelete(badCity) {
-
-    }
-
-    function handleUpShift(movingCity) {
-        let insertAt = cities.indexOf(movingCity) - 1;
-        if (indexOfMovingCity => 0) {
-            const nextCity = [
-                ...cities.slice(0, insertAt),
-                movingCity,
-                ...cities.slice(insertAt)
-            ]
-            setCities(nextCity);
-        }
-        return;
-    }
-
-    function handleDownShift() {
-
-    }
-
     return (
         <>
             <input

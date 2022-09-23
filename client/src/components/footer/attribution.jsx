@@ -1,13 +1,16 @@
-export default function Attribution({ text, resourceSrc, imgSrc }) {
+export default function Attribution({resourceSrc, imgSrc }) {
     const imageStyles = {
-        width: '150px',
-        height: '50px'
+        width: '100%',
+        height: '100%'
     }
 
+    const paragraphStyles = {
+        fontSize: '1.5rem'
+    }
     return (
         <>
-            <p>{text}<a href={resourceSrc} target='_blank'><img src={imgSrc} /></a></p>
-            <p></p>
+            <a href={resourceSrc} target='_blank'>
+                <img style={imageStyles} src={imgSrc} /></a>
         </>
     )
 }

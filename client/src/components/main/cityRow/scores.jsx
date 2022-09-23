@@ -25,7 +25,7 @@ export default function Score({ degrees, percent }) {
           <div className="mask half">
             <AnimationDiv rotation={degrees} classNames={"fill"} />
           </div>
-          <div className="inside-circle"> {percent} </div>
+          <div className="inside-circle"> {percent === 0 ? 'N/A' : percent} </div>
         </div>
       </div>
     </>
