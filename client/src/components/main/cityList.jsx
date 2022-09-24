@@ -39,6 +39,10 @@ export default function CityList() {
 
     return (
         <>
+        <div style={{
+            display: 'flex',
+            
+        }}>
             <input
                 value={name}
                 onChange={e => setName(e.target.value)}
@@ -55,8 +59,14 @@ export default function CityList() {
                     city
                 ]);
             }}><img style={{width: '30px'}} src='/src/assets/addButton.svg' /></button>
+            </div>
 
-            <div>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '40px'
+            
+            }}>
                 {cities.map((city) => (
                     <li  className='card' key={city.id} >
                         <button onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img src='src/assets/delete.svg' /></button>
