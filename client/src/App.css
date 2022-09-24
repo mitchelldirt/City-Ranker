@@ -37,12 +37,14 @@ p {
 }
 
 
-
+circle {
+  transition: all 0.7s ease-in-out;
+}
 /* PROGRESS BAR START */
 .circle-wrap {
   margin: 25px auto;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   background: #fefcff;
   border-radius: 50%;
   border: 1px solid #cdcbd0;
@@ -50,14 +52,14 @@ p {
 
 .circle-wrap .circle .mask,
 .circle-wrap .circle .fill {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   position: absolute;
   border-radius: 50%;
 }
 
 .circle-wrap .circle .mask {
-  clip: rect(0px, 150px, 150px, 75px);
+  clip: rect(0px, 100px, 100px, 75px);
 }
 
 .circle-wrap .inside-circle {
@@ -80,7 +82,7 @@ p {
 
 /* 3rd progress bar */
 .mask .fill {
-  clip: rect(0px, 75px, 150px, 0px);
+  clip: rect(0px, 75px, 100px, 0px);
   background-color: #227ded;
 }
 
