@@ -34,7 +34,7 @@ const Text = ({ percentage }) => {
             textAnchor="middle"
             fontSize={"1.5em"}
         >
-            {percentage.toFixed(0)}%
+            {percentage.toFixed(0) == 0 ? 'N/A' : percentage.toFixed(0)}
         </text>
     );
 };

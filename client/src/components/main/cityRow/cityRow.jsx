@@ -16,11 +16,27 @@ export default function CityRow({ imgURL, cityName, walkScore, bikeScore, transi
                     display: 'flex',
                     flexDirection: 'column'
                 }}>
-                    <p>{cityName}</p>
-                    <div>
-                        <Pie percentage={walkScore} colour="blue" />
-                        <Pie percentage={bikeScore} colour="blue" />
-                        <Pie percentage={transitScore} colour="blue" />
+                    <p style={{
+                        fontSize: '1.5em',
+                        fontWeight: 'bold'
+                    }}>{cityName}</p>
+                    <div style={{
+                        display: 'flex'
+                    }}>
+                        <div className='scoreContainer'>
+                            <img src='/src/assets/walk.svg' />
+                            <Pie percentage={walkScore} colour="blue" />
+                        </div>
+
+                        <div className='scoreContainer'>
+                            <img src='/src/assets/bike.svg' />
+                            <Pie percentage={bikeScore} colour="blue" />
+                        </div>
+
+                        <div className='scoreContainer'>
+                            <img src='/src/assets/train.svg' />
+                            <Pie percentage={transitScore} colour="blue" />
+                        </div>
                     </div>
                 </div>
                 {/*<Score degrees={(180 / 100) * walkScore} percent={walkScore} />

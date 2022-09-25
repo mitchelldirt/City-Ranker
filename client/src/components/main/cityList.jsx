@@ -39,37 +39,42 @@ export default function CityList() {
 
     return (
         <>
-        <div style={{
-            display: 'flex',
-            
-        }}>
-            <input
-                value={name}
-                onChange={e => setName(e.target.value)}
-            />
-            <button onClick={async () => {
-                if (name === '') {
-                    return;
-                }
-                setName('');
-                let city = await createCityObject(name);
-                console.log(city)
-                setCities([
-                    ...cities,
-                    city
-                ]);
-            }}><img style={{width: '30px'}} src='/src/assets/addButton.svg' /></button>
+            <div style={{
+                display: 'flex',
+                alignItems: 'center'
+            }}>
+                <input
+                    style={{
+                        borderRadius: '25px',
+                        width: '300px',
+                        height: '30px'
+                    }}
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                />
+                <button onClick={async () => {
+                    if (name === '') {
+                        return;
+                    }
+                    setName('');
+                    let city = await createCityObject(name);
+                    console.log(city)
+                    setCities([
+                        ...cities,
+                        city
+                    ]);
+                }}><img style={{ width: '30px', height: '30px' }} src='/src/assets/addButton.svg' /></button>
             </div>
 
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '40px'
-            
+
             }}>
                 {cities.map((city) => (
-                    <li  className='card' key={city.id} >
-                        <button onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img src='src/assets/delete.svg' /></button>
+                    <li className='card' key={city.id} >
+                        <button style={{ alignSelf: 'center' }} onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img src='src/assets/delete.svg' /></button>
 
                         <div className='cardNav'>
                             <button onClick={() => {

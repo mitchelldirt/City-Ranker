@@ -1,12 +1,11 @@
-export default function Attribution({resourceSrc, imgSrc }) {
+export default function Attribution({imgSrc }) {
     const imageStyles = {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        maxWidth: '230px',
+        maxHeight: '60px'
     }
 
-    const paragraphStyles = {
-        fontSize: '1.5rem'
-    }
     return (
         <>      
                 <img style={imageStyles} src={imgSrc} />

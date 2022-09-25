@@ -12,7 +12,7 @@ export default function ShamelessPlug() {
     return (
         <>
             <a target='_blank' href='https://github.com/mitchelldirt/City-Ranker'>
-                <p style={p}>Mitchell Mudd<img style={img} src='/src/assets/githubLogo.png' />
+                <p style={p}>MitchellDirt <img style={img} src='/src/assets/githubLogo.png' />
                 </p></a>
         </>
     )

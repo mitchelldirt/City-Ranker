@@ -1,5 +1,5 @@
 export default async function getWalkscore(address, lat, lon) {
-    const response = await fetch(`http://localhost:9000/walkscore/${address}/${lat}/${lon}`);
+    const response = await fetch(`https://city-ranker-362600.uc.r.appspot.com/walkscore/${address}/${lat}/${lon}`);
     const json = await response.json();
 
     let properties = ['walkscore', 'bike', 'transit'];
