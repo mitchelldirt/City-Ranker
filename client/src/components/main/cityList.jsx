@@ -3,6 +3,7 @@ import getGeoInformation from '../../services/geocode';
 import getImage from '../../services/getImage';
 import getWalkscore from '../../services/walkscore'
 import CityRow from './cityRow/cityRow';
+import CityImage from './cityRow/cityImage'
 
 let nextId = 3;
 
@@ -43,12 +44,7 @@ export default function CityList() {
                 display: 'flex',
                 alignItems: 'center'
             }}>
-                <input
-                    style={{
-                        borderRadius: '25px',
-                        width: '300px',
-                        height: '30px'
-                    }}
+                <input className='searchBar'
                     value={name}
                     onChange={e => setName(e.target.value)}
                 />
@@ -74,38 +70,49 @@ export default function CityList() {
             }}>
                 {cities.map((city) => (
                     <li className='card' key={city.id} >
-                        <button style={{ alignSelf: 'center' }} onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img src='/assets/delete.svg' /></button>
+                        <p className='cityNameMobile'>{city.cityName}</p>
+                        <div className='nonScoresDiv'>
+                            <button style={{ alignSelf: 'center' }} onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img src='/assets/delete.svg' /></button>
 
-                        <div className='cardNav'>
-                            <button onClick={() => {
-                                let insertAt = cities.indexOf(city) - 1;
-                                console.log(insertAt)
-                                let nextCities = [...cities]
-                                if (insertAt !== -1) {
-                                    nextCities.splice(cities.indexOf(city), 1);
-                                    nextCities.splice(insertAt, 0, city);
-                                    setCities(nextCities);
-                                }
-                                return;
-                            }}><img src='/assets/upArrow.svg' /></button>
-                            <button onClick={() => {
-                                let insertAt = cities.indexOf(city) + 1;
-                                let nextCities = [...cities]
-                                if (insertAt < cities.length) {
-                                    nextCities.splice(cities.indexOf(city), 1);
-                                    nextCities.splice(insertAt, 0, city);
-                                    setCities(nextCities);
-                                }
-                                return;
-                            }}><img src='/assets/downArrow.svg' /></button>
+                            <div className='cardNav'>
+                                <button onClick={() => {
+                                    let insertAt = cities.indexOf(city) - 1;
+                                    console.log(insertAt)
+                                    let nextCities = [...cities]
+                                    if (insertAt !== -1) {
+                                        nextCities.splice(cities.indexOf(city), 1);
+                                        nextCities.splice(insertAt, 0, city);
+                                        setCities(nextCities);
+                                    }
+                                    return;
+                                }}><img src='/assets/upArrow.svg' /></button>
+                                <button onClick={() => {
+                                    let insertAt = cities.indexOf(city) + 1;
+                                    let nextCities = [...cities]
+                                    if (insertAt < cities.length) {
+                                        nextCities.splice(cities.indexOf(city), 1);
+                                        nextCities.splice(insertAt, 0, city);
+                                        setCities(nextCities);
+                                    }
+                                    return;
+                                }}><img src='/assets/downArrow.svg' /></button>
 
+                            </div>
+                            <CityImage imgURL={city.imageURL} />
                         </div>
-                        <CityRow
-                            imgURL={city.imageURL}
-                            cityName={city.cityName}
-                            walkScore={city.walkScore}
-                            bikeScore={city.bikeScore}
-                            transitScore={city.transitScore} />
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center'
+                        }}>
+                            <p className='cityNameDesktop'>{city.cityName}</p>
+                            <CityRow
+                                imgURL={city.imageURL}
+                                cityName={city.cityName}
+                                walkScore={city.walkScore}
+                                bikeScore={city.bikeScore}
+                                transitScore={city.transitScore} />
+                        </div>
                     </li>
                 ))}
             </div>

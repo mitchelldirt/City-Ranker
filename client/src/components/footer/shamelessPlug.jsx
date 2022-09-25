@@ -1,19 +1,25 @@
 export default function ShamelessPlug() {
     const p = {
-        fontSize: '30px',
-        margin: '0'
+        fontSize: '2em',
+        margin: '0',
+
     }
 
     const img = {
-        width: '32px',
-        height: '32px'
+        width: '100%',
+        height: '100%'
     }
 
     return (
         <>
-            <a target='_blank' href='https://github.com/mitchelldirt/City-Ranker'>
-                <p style={p}>MitchellDirt <img style={img} src='/assets/githubLogo.png' />
-                </p></a>
+            <div className='plugContainer'>
+                <a target='_blank' href='https://github.com/mitchelldirt/City-Ranker'>
+                    <p className='plugName'>MitchellDirt
+                    </p></a>
+                <a className='plugImageContainer' target='_blank' href='https://github.com/mitchelldirt/City-Ranker'>
+                    <img style={img} src='/assets/githubLogo.png' /></a>
+
+            </div>
         </>
     )
 }

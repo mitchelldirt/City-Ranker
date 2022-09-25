@@ -1,4 +1,4 @@
-export default function CityImg({imgURL}) {
+export default function CityImage({imgURL}) {
     const imageStyles = {
         width: '200px',
         height: '200px',
@@ -6,7 +6,7 @@ export default function CityImg({imgURL}) {
     }
     return (
         <>
-            <img style={imageStyles} src={imgURL} />
+            <img className='cityImage' src={imgURL} />
         </>
     )
 }

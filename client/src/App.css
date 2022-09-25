@@ -10,11 +10,22 @@ li {
 }
 
 a {
-  color: black
+  color: black;
 }
 
 p {
   height: fit-content;
+  width: fit-content;
+}
+
+h1 {
+  width: fit-content;
+}
+
+.searchBar {
+  border-radius: 25px;
+  width: 300px;
+  height: 30px;
 }
 
 .cardNav {
@@ -29,6 +40,11 @@ p {
   align-items: center;
 }
 
+.scoresContainer {
+  display: flex;
+  flex-direction: row;
+}
+
 .scoreContainer > img {
   width: 25px;
   height: 25px;
@@ -37,14 +53,51 @@ p {
 .card {
   display: flex;
   height: fit-content;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 25px;
   margin: 0;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cityNameDesktop {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.cityNameMobile {
+  font-size: 1.5em;
+  font-weight: bold;
+  display: none;
+}
+
+.cityImage {
+  width: 200px;
+  height: 200px;
+  align-self: center;
+  border-radius: 25px;
+}
+
+.nonScoresDiv {
+  display: flex;
+}
+
+.plugContainer {
+  display: flex;
+  align-items: center;
+}
+
+.plugName {
+  font-size: 2em;
+  margin: 0;
+}
+
+.plugImageContainer {
+  width: 40px;
+  margin-left: 5px;
 }
 
 .wrapper {
@@ -60,54 +113,73 @@ p {
   gap: 50px;
 }
 
-
 circle {
   transition: all 0.7s ease-in-out;
 }
-/* PROGRESS BAR START */
-.circle-wrap {
-  margin: 25px auto;
-  width: 100px;
-  height: 100px;
-  background: #fefcff;
-  border-radius: 50%;
-  border: 1px solid #cdcbd0;
+
+@media (max-width: 1000px) {
+  .cityNameDesktop {
+    display: none;
+  }
+
+  .cityNameMobile {
+    display: block;
+  }
+
+  .card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nonScoresDiv {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .plugName {
+    font-size: 1.5em;
+  }
+
+  .plugImageContainer {
+    width: 30px;
+  }
 }
 
-.circle-wrap .circle .mask,
-.circle-wrap .circle .fill {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  border-radius: 50%;
+@media (max-width: 600px) {
+  #root {
+    padding: 0.5rem;
+  }
+
+  .searchBar {
+    width: 200px;
+  }
+
+  .nonScoresDiv {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .scoresContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .scoreContainer {
+    flex-direction: row;
+  }
+
+  .cityImage {
+    width: 150px;
+    height: 150px;
+  }
+
+  .plugName {
+    font-size: 1em;
+  }
+
+  .plugImageContainer {
+    width: 20px;
+  }
 }
-
-.circle-wrap .circle .mask {
-  clip: rect(0px, 100px, 100px, 75px);
-}
-
-.circle-wrap .inside-circle {
-  width: 122px;
-  height: 122px;
-  border-radius: 50%;
-  background: #d2eaf1;
-  line-height: 120px;
-  text-align: center;
-  margin-top: 14px;
-  margin-left: 14px;
-  color: #1e51dc;
-  position: absolute;
-  z-index: 100;
-  font-weight: 700;
-  font-size: 2em;
-}
-
-/* color animation */
-
-/* 3rd progress bar */
-.mask .fill {
-  clip: rect(0px, 75px, 100px, 0px);
-  background-color: #227ded;
-}
-
-/* PROGRESS BAR END */

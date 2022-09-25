@@ -7,7 +7,8 @@ export default function Header() {
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                alignItems: 'center'
             }}>
                 <Title />
                 <p style={{
