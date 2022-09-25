@@ -44,11 +44,14 @@ export default function CityList() {
                 display: 'flex',
                 alignItems: 'center'
             }}>
-                <input className='searchBar'
+                <input
+                    className='searchBar'
+                    placeholder='Type a city name and hit the +'
+                    aria-label='Input box for a city name to add to the list'
                     value={name}
                     onChange={e => setName(e.target.value)}
                 />
-                <button onClick={async () => {
+                <button id='addButton' aria-label='Plus symbol button to add a city to the city' onClick={async () => {
                     if (name === '') {
                         return;
                     }
@@ -59,23 +62,24 @@ export default function CityList() {
                         ...cities,
                         city
                     ]);
-                }}><img style={{ width: '30px', height: '30px' }} src='/assets/addButton.svg' /></button>
+                }}><img aria-labelledby='addButton' style={{ width: '30px', height: '30px' }} src='/assets/addButton.svg' /></button>
             </div>
 
-            <div style={{
+            <ol style={{
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '40px'
 
             }}>
-                {cities.map((city) => (
+            {
+                cities.map((city) => (
                     <li className='card' key={city.id} >
                         <p className='cityNameMobile'>{city.cityName}</p>
                         <div className='nonScoresDiv'>
-                            <button style={{ alignSelf: 'center' }} onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img src='/assets/delete.svg' /></button>
+                            <button id={'deleteButton'.concat(city.id)} aria-label='Trash can button to delete a city from the list' style={{ alignSelf: 'center' }} onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img aria-labelledby={'deleteButton'.concat(city.id)} src='/assets/delete.svg' className='cardButton' /></button>
 
                             <div className='cardNav'>
-                                <button onClick={() => {
+                                <button id={'upArrow'.concat(city.id)} aria-label='Up arrow button to move a city up one in the list' onClick={() => {
                                     let insertAt = cities.indexOf(city) - 1;
                                     console.log(insertAt)
                                     let nextCities = [...cities]
@@ -85,8 +89,8 @@ export default function CityList() {
                                         setCities(nextCities);
                                     }
                                     return;
-                                }}><img src='/assets/upArrow.svg' /></button>
-                                <button onClick={() => {
+                                }}><img aria-labelledby={'upArrow'.concat(city.id)} src='/assets/upArrow.svg' className='cardButton' /></button>
+                                <button id={'downArrow'.concat(city.id)} aria-label='Down arrow button to move a city down one in the list' onClick={() => {
                                     let insertAt = cities.indexOf(city) + 1;
                                     let nextCities = [...cities]
                                     if (insertAt < cities.length) {
@@ -95,7 +99,7 @@ export default function CityList() {
                                         setCities(nextCities);
                                     }
                                     return;
-                                }}><img src='/assets/downArrow.svg' /></button>
+                                }}><img aria-labelledby={'downArrow'.concat(city.id)} src='/assets/downArrow.svg' className='cardButton' /></button>
 
                             </div>
                             <CityImage imgURL={city.imageURL} />
@@ -111,11 +115,13 @@ export default function CityList() {
                                 cityName={city.cityName}
                                 walkScore={city.walkScore}
                                 bikeScore={city.bikeScore}
-                                transitScore={city.transitScore} />
+                                transitScore={city.transitScore}
+                                cityID={city.id} />
                         </div>
                     </li>
-                ))}
-            </div>
+                ))
+            }
+                </ol>
         </>
     )
 }

@@ -1,4 +1,4 @@
-export default function Attribution({imgSrc }) {
+export default function Attribution({imgSrc, aria }) {
     const imageStyles = {
         width: '100%',
         height: '100%',
@@ -8,7 +8,7 @@ export default function Attribution({imgSrc }) {
 
     return (
         <>      
-                <img style={imageStyles} src={imgSrc} />
+                <img aria-labelledby={aria} style={imageStyles} src={imgSrc} />
         </>
     )
 }

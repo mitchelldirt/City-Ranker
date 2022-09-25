@@ -2,9 +2,9 @@ import Attribution from './attribution';
 import ShamelessPlug from './shamelessPlug';
 
 const attributions = [
-    { text: '', resourceSrc: 'https://www.walkscore.com/professional/', imgSrc: '/assets/walkscoreLogo.png', id: 0 },
-    { text: '', resourceSrc: 'https://www.pexels.com', imgSrc: 'https://images.pexels.com/lib/api/pexels.png', id: 1 },
-    { text: '', resourceSrc: 'https://developers.google.com/fonts/faq', imgSrc: '/assets/googleFontsLogo.png', id: 2 }
+    { resourceSrc: 'https://www.walkscore.com/professional/', imgSrc: '/assets/walkscoreLogo.png', aria: 'Walkscore website which is used to get data on walking, biking, and transit for a city', id: 0 },
+    { resourceSrc: 'https://www.pexels.com', imgSrc: 'https://images.pexels.com/lib/api/pexels.png', aria: 'Pexels website used to get stock images', id: 1 },
+    { resourceSrc: 'https://developers.google.com/fonts/faq', imgSrc: '/assets/googleFontsLogo.png', aria: 'Google Fonts FAQ website which includes the license and links to finding free fonts and icons (I\'ve used the icons in this website.', id: 2 }
 ]
 
 
@@ -24,10 +24,10 @@ export default function Footer() {
         <>
             <footer style={footerStyles}>
                 {attributions.map(attr => (
-                    <a href={attr.resourceSrc} target='_blank' key={attr.id}>
+                    <a id={'attribution'.concat(attr.id)} aria-label={attr.aria} href={attr.resourceSrc} target='_blank' key={attr.id}>
                         <Attribution
-                            text={attr.text}
                             imgSrc={attr.imgSrc}
+                            aria={'attribution'.concat(attr.id)}
                         />
                     </a>
                 ))}

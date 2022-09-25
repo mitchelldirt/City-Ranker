@@ -33,6 +33,10 @@ h1 {
   flex-direction: column;
   align-self: center;
 }
+.cardButton {
+  width: 48px;
+  height: 48px;
+}
 
 .scoreContainer {
   display: flex;
