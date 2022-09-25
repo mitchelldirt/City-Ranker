@@ -4,7 +4,7 @@ import ShamelessPlug from './shamelessPlug';
 const attributions = [
     { text: '', resourceSrc: 'https://www.walkscore.com/professional/', imgSrc: '/assets/walkscoreLogo.png', id: 0 },
     { text: '', resourceSrc: 'https://www.pexels.com', imgSrc: 'https://images.pexels.com/lib/api/pexels.png', id: 1 },
-    { text: '', resourceSrc: 'https://www.walkscore.com/professional/', imgSrc: '/assets/googleFontsLogo.png', id: 2 }
+    { text: '', resourceSrc: 'https://developers.google.com/fonts/faq', imgSrc: '/assets/googleFontsLogo.png', id: 2 }
 ]
 
 
