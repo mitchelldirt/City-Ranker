@@ -63,7 +63,7 @@ export default function CityList() {
                         ...cities,
                         city
                     ]);
-                }}><img style={{ width: '30px', height: '30px' }} src='/src/assets/addButton.svg' /></button>
+                }}><img style={{ width: '30px', height: '30px' }} src='/client/src/assets/addButton.svg' /></button>
             </div>
 
             <div style={{
