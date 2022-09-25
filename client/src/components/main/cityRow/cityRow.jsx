@@ -1,6 +1,5 @@
 import CityImg from './cityImage'
-import Score from './scores'
-import Pie from './scores2'
+import Pie from './scores'
 
 export default function CityRow({ imgURL, cityName, walkScore, bikeScore, transitScore }) {
     const cityCard = {
@@ -24,17 +23,17 @@ export default function CityRow({ imgURL, cityName, walkScore, bikeScore, transi
                         display: 'flex'
                     }}>
                         <div className='scoreContainer'>
-                            <img src='/src/assets/walk.svg' />
+                            <img src='/assets/walk.svg' />
                             <Pie percentage={walkScore} colour="blue" />
                         </div>
 
                         <div className='scoreContainer'>
-                            <img src='/src/assets/bike.svg' />
+                            <img src='/assets/bike.svg' />
                             <Pie percentage={bikeScore} colour="blue" />
                         </div>
 
                         <div className='scoreContainer'>
-                            <img src='/src/assets/train.svg' />
+                            <img src='/assets/train.svg' />
                             <Pie percentage={transitScore} colour="blue" />
                         </div>
                     </div>

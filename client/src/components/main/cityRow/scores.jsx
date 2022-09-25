@@ -1,33 +1,55 @@
-import { motion } from 'framer-motion'
+import React from "react";
 
-function AnimationDiv({ classNames, rotation, childComponent }) {
-  return (
-    <motion.div
-      className={classNames}
-      animate={{
-        rotate: rotation
-      }}
-      transition={{
-        duration: 2,
-        ease: "easeInOut"
-      }}
-    >{childComponent}
-    </motion.div>
-  );
-}
+const cleanPercentage = (percentage) => {
+    const tooLow = !Number.isFinite(+percentage) || percentage < 0;
+    const tooHigh = percentage > 100;
+    return tooLow ? 0 : tooHigh ? 100 : +percentage;
+};
 
-export default function Score({ degrees, percent }) {
-  return (
-    <>
-      <div className="circle-wrap">
-        <div className="circle">
-          <AnimationDiv rotation={degrees} classNames={"mask full"} childComponent={<AnimationDiv rotation={degrees} classNames={"fill"} />} />
-          <div className="mask half">
-            <AnimationDiv rotation={degrees} classNames={"fill"} />
-          </div>
-          <div className="inside-circle"> {percent === 0 ? 'N/A' : percent} </div>
-        </div>
-      </div>
-    </>
-  )
-}
+const Circle = ({ colour, pct }) => {
+    const r = 50;
+    const circ = 2 * Math.PI * r;
+    const strokePct = ((100 - pct) * circ) / 100;
+    return (
+        <circle
+            r={r}
+            cx={125}
+            cy={100}
+            fill="transparent"
+            stroke={strokePct !== circ ? colour : ""} // remove colour as 0% sets full circumference
+            strokeWidth={"1rem"}
+            strokeDasharray={circ}
+            strokeDashoffset={pct ? strokePct : 0}
+            strokeLinecap="round"
+        ></circle>
+    );
+};
+
+const Text = ({ percentage }) => {
+    return (
+        <text
+            x="50%"
+            y="50%"
+            dominantBaseline="central"
+            textAnchor="middle"
+            fontSize={"1.5em"}
+        >
+            {percentage.toFixed(0) == 0 ? 'N/A' : percentage.toFixed(0)}
+        </text>
+    );
+};
+
+const Pie = ({ percentage, colour }) => {
+    const pct = cleanPercentage(percentage);
+    return (
+        <svg width={200} height={150}>
+            <g transform={`rotate(-90 ${"100 100"})`}>
+                <Circle colour="lightgrey" />
+                <Circle colour={colour} pct={pct} />
+            </g>
+            <Text percentage={pct} />
+        </svg>
+    );
+};
+
+export default Pie;

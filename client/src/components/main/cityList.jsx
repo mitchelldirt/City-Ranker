@@ -63,7 +63,7 @@ export default function CityList() {
                         ...cities,
                         city
                     ]);
-                }}><img style={{ width: '30px', height: '30px' }} src='/client/src/assets/addButton.svg' /></button>
+                }}><img style={{ width: '30px', height: '30px' }} src='/assets/addButton.svg' /></button>
             </div>
 
             <div style={{
@@ -74,7 +74,7 @@ export default function CityList() {
             }}>
                 {cities.map((city) => (
                     <li className='card' key={city.id} >
-                        <button style={{ alignSelf: 'center' }} onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img src='src/assets/delete.svg' /></button>
+                        <button style={{ alignSelf: 'center' }} onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img src='/assets/delete.svg' /></button>
 
                         <div className='cardNav'>
                             <button onClick={() => {
@@ -87,7 +87,7 @@ export default function CityList() {
                                     setCities(nextCities);
                                 }
                                 return;
-                            }}><img src='/src/assets/upArrow.svg' /></button>
+                            }}><img src='/assets/upArrow.svg' /></button>
                             <button onClick={() => {
                                 let insertAt = cities.indexOf(city) + 1;
                                 let nextCities = [...cities]
@@ -97,7 +97,7 @@ export default function CityList() {
                                     setCities(nextCities);
                                 }
                                 return;
-                            }}><img src='/src/assets/downArrow.svg' /></button>
+                            }}><img src='/assets/downArrow.svg' /></button>
 
                         </div>
                         <CityRow
