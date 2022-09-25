@@ -8,4 +8,4 @@ This will be a simple project where you can rank cities. First you search for an
 
 The inspiration for this project is simply that as an opionated person I love ranking things and I also love learning about different places 🏙 😄
 
-![image](https://user-images.githubusercontent.com/75150470/190916352-d660a4e2-6828-45c2-94c1-e88add305cd4.png)
+![image](https://user-images.githubusercontent.com/75150470/190916434-dfe2173d-7b30-433c-9fb7-2f31c20a701b.png)
