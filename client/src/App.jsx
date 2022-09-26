@@ -8,9 +8,6 @@ import Account from './components/auth/account'
 
 import './App.css'
 
-const { data, error } = await supabase.auth.getSession()
-console.log(data)
-
 function App() {
   const [session, setSession] = useState(null)
 
