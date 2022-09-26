@@ -3,10 +3,13 @@ import Header from './components/header/header'
 import Footer from './components/footer/footer'
 import CityList from './components/main/cityList'
 import { supabase } from './services/supabaseClient'
-import Auth from './components/header/auth'
-import Account from './components/header/account'
+import Auth from './components/auth/auth'
+import Account from './components/auth/account'
 
 import './App.css'
+
+const { data, error } = await supabase.auth.getSession()
+console.log(data)
 
 function App() {
   const [session, setSession] = useState(null)
@@ -20,6 +23,8 @@ function App() {
       setSession(session)
     })
   }, [])
+
+  
 
   return (
     <div className="App">
