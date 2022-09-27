@@ -2,50 +2,16 @@ import { useState, useEffect } from 'react';
 import getGeoInformation from '../../services/geocode';
 import getImage from '../../services/getImage';
 import getWalkscore from '../../services/walkscore'
-import CityRow from './cityRow/cityRow';
+import ScoresContainer from './cityRow/ScoresContainer';
 import CityImage from './cityRow/cityImage'
-import { getProfile } from '../../App'
-import { supabase } from '../../services/supabaseClient'
+import { setInitialCityList, updateUserCityList } from '../../services/supabaseFunctions'
 let nextId = 3;
+let initialCityList;
 
-
-
-async function setInitialCityList() {
-    const data = await supabase.auth.getSession();
-    if (data.data.session) {
-        const profile = await getProfile(data.data.session);
-        const cityList = await profile[0].city_list;
-        console.log(cityList)
-        return cityList;
-    }
-    return JSON.stringify([
-        { imageURL: 'https://images.pexels.com/photos/432361/pexels-photo-432361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Portland, OR USA', walkScore: '62', bikeScore: '49', transitScore: '83', id: 0 },
-        { imageURL: 'https://images.pexels.com/photos/1796730/pexels-photo-1796730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Seattle, WA USA', walkScore: '74', bikeScore: '60', transitScore: '71', id: 1 },
-        { imageURL: 'https://images.pexels.com/photos/3876958/pexels-photo-3876958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Tucson, AZ USA', walkScore: '43', bikeScore: '35', transitScore: '66', id: 2 }
-    ])
-}
-
-async function updateUserCityList(cityList) {
-    const user = await supabase.auth.getSession();
-    if (user.data.session) {
-        try {
-            const { data, error } = await supabase
-                .from('profiles')
-                .update({ city_list: JSON.stringify(cityList) })
-                .match({ id: user.data.session.user.id })
-
-            if (error) {
-                throw error
-            }
-        } catch (error) {
-            alert(error.message)
-        }
-    }
-    return;
-}
-
-const initialCityList = await (setInitialCityList());
-console.log(initialCityList)
+// Avoiding top level await for compatibility. Using an async IIFE 
+(async function setInitialState() {
+initialCityList = await setInitialCityList();
+})()
 
 // Use the user input (should be a city name) to call 3 APIs and create the city object
 async function createCityObject(userInput) {
@@ -147,9 +113,7 @@ export default function CityList() {
                                 alignItems: 'center'
                             }}>
                                 <p className='cityNameDesktop'>{city.cityName}</p>
-                                <CityRow
-                                    imgURL={city.imageURL}
-                                    cityName={city.cityName}
+                                <ScoresContainer
                                     walkScore={city.walkScore}
                                     bikeScore={city.bikeScore}
                                     transitScore={city.transitScore}

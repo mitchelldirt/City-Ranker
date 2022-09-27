@@ -1,9 +1,5 @@
 export default function ShamelessPlug() {
-    const p = {
-        fontSize: '2em',
-        margin: '0',
-
-    }
+    // This is for my GitHub Icon Specifically. Could throw into the attribution area, but keeping here.
 
     const img = {
         width: '100%',
