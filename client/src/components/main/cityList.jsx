@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import getGeoInformation from '../../services/geocode';
 import getImage from '../../services/getImage';
 import getWalkscore from '../../services/walkscore'
 import CityRow from './cityRow/cityRow';
 import CityImage from './cityRow/cityImage'
-import {getProfile} from '../../App'
+import { getProfile } from '../../App'
 import { supabase } from '../../services/supabaseClient'
 let nextId = 3;
 
@@ -18,22 +18,35 @@ async function setInitialCityList() {
         console.log(cityList)
         return cityList;
     }
-        return [
-            { imageURL: 'https://images.pexels.com/photos/432361/pexels-photo-432361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Portland, OR USA', walkScore: '62', bikeScore: '49', transitScore: '83', id: 0 },
-            { imageURL: 'https://images.pexels.com/photos/1796730/pexels-photo-1796730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Seattle, WA USA', walkScore: '74', bikeScore: '60', transitScore: '71', id: 1 },
-            { imageURL: 'https://images.pexels.com/photos/3876958/pexels-photo-3876958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Tucson, AZ USA', walkScore: '43', bikeScore: '35', transitScore: '66', id: 2 }
-        ]
-    }
+    return [
+        { imageURL: 'https://images.pexels.com/photos/432361/pexels-photo-432361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Portland, OR USA', walkScore: '62', bikeScore: '49', transitScore: '83', id: 0 },
+        { imageURL: 'https://images.pexels.com/photos/1796730/pexels-photo-1796730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Seattle, WA USA', walkScore: '74', bikeScore: '60', transitScore: '71', id: 1 },
+        { imageURL: 'https://images.pexels.com/photos/3876958/pexels-photo-3876958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Tucson, AZ USA', walkScore: '43', bikeScore: '35', transitScore: '66', id: 2 }
+    ]
+}
 
-const initialCityList = await setInitialCityList();
+async function updateUserCityList(cityList) {
+    const user = await supabase.auth.getSession();
+    if (user.data.session) {
+        try {
+            const { data, error } = await supabase
+                .from('profiles')
+                .update({ city_list: JSON.stringify(cityList) })
+                .match({ id: user.data.session.user.id })
+
+            if (error) {
+                throw error
+            }
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+    return;
+}
+
+const initialCityList = await (setInitialCityList());
 console.log(initialCityList)
 
-
-const testCityList = [
-    { imageURL: 'https://images.pexels.com/photos/432361/pexels-photo-432361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Portland, OR USA', walkScore: '67', bikeScore: '49', transitScore: '83', id: 0 },
-    { imageURL: 'https://images.pexels.com/photos/1796730/pexels-photo-1796730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Seattle, WA USA', walkScore: '74', bikeScore: '60', transitScore: '71', id: 1 },
-    { imageURL: 'https://images.pexels.com/photos/3876958/pexels-photo-3876958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Tucson, AZ USA', walkScore: '43', bikeScore: '35', transitScore: '66', id: 2 }
-]
 // Use the user input (should be a city name) to call 3 APIs and create the city object
 async function createCityObject(userInput) {
     let googleResponse = await getGeoInformation(userInput);
@@ -54,8 +67,13 @@ async function createCityObject(userInput) {
 }
 
 export default function CityList() {
-        const [name, setName] = useState('');
-        const [cities, setCities] = useState(initialCityList); 
+    const [name, setName] = useState('');
+    const [cities, setCities] = useState(JSON.parse(initialCityList));
+
+    useEffect(() => {
+        // Update the users list in supabase
+        updateUserCityList(cities)
+    });
 
     return (
         <>
