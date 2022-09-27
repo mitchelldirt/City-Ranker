@@ -52,7 +52,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Auth />
       <div className='wrapper'>
         <CityList key="cityList" />
       </div>

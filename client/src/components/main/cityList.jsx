@@ -18,11 +18,11 @@ async function setInitialCityList() {
         console.log(cityList)
         return cityList;
     }
-    return [
+    return JSON.stringify([
         { imageURL: 'https://images.pexels.com/photos/432361/pexels-photo-432361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Portland, OR USA', walkScore: '62', bikeScore: '49', transitScore: '83', id: 0 },
         { imageURL: 'https://images.pexels.com/photos/1796730/pexels-photo-1796730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Seattle, WA USA', walkScore: '74', bikeScore: '60', transitScore: '71', id: 1 },
         { imageURL: 'https://images.pexels.com/photos/3876958/pexels-photo-3876958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Tucson, AZ USA', walkScore: '43', bikeScore: '35', transitScore: '66', id: 2 }
-    ]
+    ])
 }
 
 async function updateUserCityList(cityList) {
