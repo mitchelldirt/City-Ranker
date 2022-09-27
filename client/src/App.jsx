@@ -8,14 +8,12 @@ import Account from './components/auth/account'
 
 import './App.css'
 
-async function getProfile(user) {
+export async function getProfile(user) {
   const { data, error } = await supabase.from('profiles').select('*').eq('id', user.user.id)
-  console.log(data)
   return data;
 }
 
 async function initializeProfile(user) {
-  console.log(user)
   const { data, error } = await supabase
     .from('profiles')
     .insert([
@@ -35,7 +33,6 @@ function App() {
         res => res.length
       ).then(res => {
         if (res === 0) {
-          console.log('hello')
           initializeProfile(session)
         }
       })
@@ -46,7 +43,7 @@ function App() {
 
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
-      console.log(session)
+      
     })
   }, [])
 

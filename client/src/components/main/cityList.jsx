@@ -4,9 +4,29 @@ import getImage from '../../services/getImage';
 import getWalkscore from '../../services/walkscore'
 import CityRow from './cityRow/cityRow';
 import CityImage from './cityRow/cityImage'
-import getUser from '../../services/authFunctions'
-
+import {getProfile} from '../../App'
+import { supabase } from '../../services/supabaseClient'
 let nextId = 3;
+
+
+
+async function setInitialCityList() {
+    const data = await supabase.auth.getSession();
+    if (data.data.session) {
+        const profile = await getProfile(data.data.session);
+        const cityList = await profile[0].city_list;
+        console.log(cityList)
+        return cityList;
+    }
+        return [
+            { imageURL: 'https://images.pexels.com/photos/432361/pexels-photo-432361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Portland, OR USA', walkScore: '62', bikeScore: '49', transitScore: '83', id: 0 },
+            { imageURL: 'https://images.pexels.com/photos/1796730/pexels-photo-1796730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Seattle, WA USA', walkScore: '74', bikeScore: '60', transitScore: '71', id: 1 },
+            { imageURL: 'https://images.pexels.com/photos/3876958/pexels-photo-3876958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Tucson, AZ USA', walkScore: '43', bikeScore: '35', transitScore: '66', id: 2 }
+        ]
+    }
+
+const initialCityList = await setInitialCityList();
+console.log(initialCityList)
 
 
 const testCityList = [
@@ -14,9 +34,6 @@ const testCityList = [
     { imageURL: 'https://images.pexels.com/photos/1796730/pexels-photo-1796730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Seattle, WA USA', walkScore: '74', bikeScore: '60', transitScore: '71', id: 1 },
     { imageURL: 'https://images.pexels.com/photos/3876958/pexels-photo-3876958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Tucson, AZ USA', walkScore: '43', bikeScore: '35', transitScore: '66', id: 2 }
 ]
-
-
-
 // Use the user input (should be a city name) to call 3 APIs and create the city object
 async function createCityObject(userInput) {
     let googleResponse = await getGeoInformation(userInput);
@@ -37,8 +54,8 @@ async function createCityObject(userInput) {
 }
 
 export default function CityList() {
-    const [name, setName] = useState('');
-    const [cities, setCities] = useState(testCityList)
+        const [name, setName] = useState('');
+        const [cities, setCities] = useState(initialCityList); 
 
     return (
         <>
@@ -73,57 +90,57 @@ export default function CityList() {
                 gap: '40px'
 
             }}>
-            {
-                cities.map((city) => (
-                    <li className='card' key={city.id} >
-                        <p className='cityNameMobile'>{city.cityName}</p>
-                        <div className='nonScoresDiv'>
-                            <button id={'deleteButton'.concat(city.id)} aria-label='Trash can button to delete a city from the list' style={{ alignSelf: 'center' }} onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img aria-labelledby={'deleteButton'.concat(city.id)} src='/assets/delete.svg' className='cardButton' /></button>
+                {
+                    cities.map((city) => (
+                        <li className='card' key={city.id} >
+                            <p className='cityNameMobile'>{city.cityName}</p>
+                            <div className='nonScoresDiv'>
+                                <button id={'deleteButton'.concat(city.id)} aria-label='Trash can button to delete a city from the list' style={{ alignSelf: 'center' }} onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img aria-labelledby={'deleteButton'.concat(city.id)} src='/assets/delete.svg' className='cardButton' /></button>
 
-                            <div className='cardNav'>
-                                <button id={'upArrow'.concat(city.id)} aria-label='Up arrow button to move a city up one in the list' onClick={() => {
-                                    let insertAt = cities.indexOf(city) - 1;
-                                    console.log(insertAt)
-                                    let nextCities = [...cities]
-                                    if (insertAt !== -1) {
-                                        nextCities.splice(cities.indexOf(city), 1);
-                                        nextCities.splice(insertAt, 0, city);
-                                        setCities(nextCities);
-                                    }
-                                    return;
-                                }}><img aria-labelledby={'upArrow'.concat(city.id)} src='/assets/upArrow.svg' className='cardButton' /></button>
-                                <button id={'downArrow'.concat(city.id)} aria-label='Down arrow button to move a city down one in the list' onClick={() => {
-                                    let insertAt = cities.indexOf(city) + 1;
-                                    let nextCities = [...cities]
-                                    if (insertAt < cities.length) {
-                                        nextCities.splice(cities.indexOf(city), 1);
-                                        nextCities.splice(insertAt, 0, city);
-                                        setCities(nextCities);
-                                    }
-                                    return;
-                                }}><img aria-labelledby={'downArrow'.concat(city.id)} src='/assets/downArrow.svg' className='cardButton' /></button>
+                                <div className='cardNav'>
+                                    <button id={'upArrow'.concat(city.id)} aria-label='Up arrow button to move a city up one in the list' onClick={() => {
+                                        let insertAt = cities.indexOf(city) - 1;
+                                        console.log(insertAt)
+                                        let nextCities = [...cities]
+                                        if (insertAt !== -1) {
+                                            nextCities.splice(cities.indexOf(city), 1);
+                                            nextCities.splice(insertAt, 0, city);
+                                            setCities(nextCities);
+                                        }
+                                        return;
+                                    }}><img aria-labelledby={'upArrow'.concat(city.id)} src='/assets/upArrow.svg' className='cardButton' /></button>
+                                    <button id={'downArrow'.concat(city.id)} aria-label='Down arrow button to move a city down one in the list' onClick={() => {
+                                        let insertAt = cities.indexOf(city) + 1;
+                                        let nextCities = [...cities]
+                                        if (insertAt < cities.length) {
+                                            nextCities.splice(cities.indexOf(city), 1);
+                                            nextCities.splice(insertAt, 0, city);
+                                            setCities(nextCities);
+                                        }
+                                        return;
+                                    }}><img aria-labelledby={'downArrow'.concat(city.id)} src='/assets/downArrow.svg' className='cardButton' /></button>
 
+                                </div>
+                                <CityImage imgURL={city.imageURL} />
                             </div>
-                            <CityImage imgURL={city.imageURL} />
-                        </div>
-                        <div style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center'
-                        }}>
-                            <p className='cityNameDesktop'>{city.cityName}</p>
-                            <CityRow
-                                imgURL={city.imageURL}
-                                cityName={city.cityName}
-                                walkScore={city.walkScore}
-                                bikeScore={city.bikeScore}
-                                transitScore={city.transitScore}
-                                cityID={city.id} />
-                        </div>
-                    </li>
-                ))
-            }
-                </ol>
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center'
+                            }}>
+                                <p className='cityNameDesktop'>{city.cityName}</p>
+                                <CityRow
+                                    imgURL={city.imageURL}
+                                    cityName={city.cityName}
+                                    walkScore={city.walkScore}
+                                    bikeScore={city.bikeScore}
+                                    transitScore={city.transitScore}
+                                    cityID={city.id} />
+                            </div>
+                        </li>
+                    ))
+                }
+            </ol>
         </>
     )
 }
