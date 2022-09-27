@@ -4,8 +4,10 @@ import getImage from '../../services/getImage';
 import getWalkscore from '../../services/walkscore'
 import CityRow from './cityRow/cityRow';
 import CityImage from './cityRow/cityImage'
+import getUser from '../../services/authFunctions'
 
 let nextId = 3;
+
 
 const testCityList = [
     { imageURL: 'https://images.pexels.com/photos/432361/pexels-photo-432361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', cityName: 'Portland, OR USA', walkScore: '67', bikeScore: '49', transitScore: '83', id: 0 },

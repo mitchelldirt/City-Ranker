@@ -8,20 +8,49 @@ import Account from './components/auth/account'
 
 import './App.css'
 
+async function getProfile(user) {
+  const { data, error } = await supabase.from('profiles').select('*').eq('id', user.user.id)
+  console.log(data)
+  return data;
+}
+
+async function initializeProfile(user) {
+  console.log(user)
+  const { data, error } = await supabase
+    .from('profiles')
+    .insert([
+      { id: `${user.user.id}`, username: `${user.user.email}` }
+    ])
+  
+}
+
 function App() {
   const [session, setSession] = useState(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
+      let profileDataLength;
+      let profileData = getProfile(session).then(
+        res => res.length
+      ).then(res => {
+        if (res === 0) {
+          console.log('hello')
+          initializeProfile(session)
+        }
+      })
+
+
+
     })
 
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
+      console.log(session)
     })
   }, [])
 
-  
+
 
   return (
     <div className="App">
