@@ -3,7 +3,7 @@ import Header from './components/header/header'
 import Footer from './components/footer/footer'
 import CityList from './components/main/cityList'
 import { supabase } from './services/supabaseClient'
-import { getProfile, initializeProfile } from './services/supabaseFunctions'
+import { getProfile, initializeProfile, setInitialCityList } from './services/supabaseFunctions'
 import './App.css'
 
 function App() {
@@ -26,8 +26,6 @@ function App() {
       setSession(session)
     })
   }, [])
-
-
 
   return (
     <div className="App">

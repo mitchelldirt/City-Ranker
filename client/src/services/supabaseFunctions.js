@@ -16,8 +16,10 @@ export async function initializeProfile(user) {
 
 export async function setInitialCityList() {
     const data = await supabase.auth.getSession();
-    if (data.data.session) {
+    console.log(data)
+    if (data.data.session.user) {
         const profile = await getProfile(data.data.session);
+        console.log(profile)
         const cityList = await profile[0].city_list;
         console.log(cityList)
         return cityList;

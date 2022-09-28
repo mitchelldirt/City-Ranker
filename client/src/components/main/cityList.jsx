@@ -6,17 +6,14 @@ import ScoresContainer from './cityRow/ScoresContainer';
 import CityImage from './cityRow/cityImage'
 import { setInitialCityList, updateUserCityList } from '../../services/supabaseFunctions'
 let nextId = 3;
-let initialCityList;
 
 // Avoiding top level await for compatibility. Using an async IIFE 
-(async function setInitialState() {
-initialCityList = await setInitialCityList();
-})()
+let initialCityList = setInitialCityList();
+
 
 // Use the user input (should be a city name) to call 3 APIs and create the city object
 async function createCityObject(userInput) {
     let googleResponse = await getGeoInformation(userInput);
-    console.log(googleResponse)
     let imageURL = await getImage(`${googleResponse.address} City`);
     let scores = await getWalkscore(googleResponse.address, googleResponse.latitude, googleResponse.longitude);
 
@@ -34,12 +31,26 @@ async function createCityObject(userInput) {
 
 export default function CityList() {
     const [name, setName] = useState('');
-    const [cities, setCities] = useState(JSON.parse(initialCityList));
+    const [cities, setCities] = useState(null);
+
+    // Fetch the initial list either off a user or from the default I set then when it's ready set it.
+    useEffect(() => {
+        setInitialCityList().then(data => {
+            setCities(JSON.parse(data))
+        });
+    }, []);
+
 
     useEffect(() => {
         // Update the users list in supabase
-        updateUserCityList(cities)
+        if (cities !== null) {
+        updateUserCityList(cities)}
     });
+
+    // if initial city list isn't ready show Loading...
+    if (cities === null) {
+        return <p>Loading...</p>
+    }
 
     return (
         <>
@@ -60,7 +71,6 @@ export default function CityList() {
                     }
                     setName('');
                     let city = await createCityObject(name);
-                    console.log(city)
                     setCities([
                         ...cities,
                         city
@@ -74,6 +84,7 @@ export default function CityList() {
                 gap: '40px'
 
             }}>
+
                 {
                     cities.map((city) => (
                         <li className='card' key={city.id} >
@@ -84,7 +95,6 @@ export default function CityList() {
                                 <div className='cardNav'>
                                     <button id={'upArrow'.concat(city.id)} aria-label='Up arrow button to move a city up one in the list' onClick={() => {
                                         let insertAt = cities.indexOf(city) - 1;
-                                        console.log(insertAt)
                                         let nextCities = [...cities]
                                         if (insertAt !== -1) {
                                             nextCities.splice(cities.indexOf(city), 1);
@@ -122,6 +132,7 @@ export default function CityList() {
                         </li>
                     ))
                 }
+
             </ol>
         </>
     )
