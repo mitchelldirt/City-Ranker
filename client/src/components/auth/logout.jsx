@@ -1,8 +1,8 @@
+import { logOut } from '../../services/supabaseFunctions'
 
-
-export default function LogIn() {
+export default function LogOut({onClick}) {
     return (
-        <a className='login' href='/login'>
+        <a className='login' onClick={onClick}>
             <div style={{
                 border: '1px solid black',
                 borderRadius: '25px',
@@ -11,9 +11,9 @@ export default function LogIn() {
                 padding: '5px'
             }}>
                 <button className='loginButton' style={{ color: 'black', fontWeight: 'bold' }}>
-                    LOGIN
+                    LOGOUT
                 </button>
-                <img style={{cursor: 'pointer'}} src='/assets/login.svg' />
+                <img style={{cursor: 'pointer'}} src='/assets/logout.svg' />
             </div>
         </a>
     )

@@ -3,8 +3,10 @@ import Header from './components/header/header'
 import Footer from './components/footer/footer'
 import CityList from './components/main/cityList'
 import { supabase } from './services/supabaseClient'
-import { getProfile, initializeProfile, setInitialCityList } from './services/supabaseFunctions'
+import { getProfile, initializeProfile, setInitialCityList, verifySession, logOut } from './services/supabaseFunctions'
 import './App.css'
+import LogIn from './components/auth/login'
+import LogOut from './components/auth/logout'
 
 function App() {
   const [session, setSession] = useState(null)
@@ -12,6 +14,8 @@ function App() {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
+
+      if (session){
       let profileDataLength;
       let profileData = getProfile(session).then(
         res => res.length
@@ -20,7 +24,7 @@ function App() {
           initializeProfile(session)
         }
       })
-    })
+  }})
 
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
@@ -29,6 +33,7 @@ function App() {
 
   return (
     <div className="App">
+      {session ? <LogOut onClick={logOut}/> : <LogIn />}
       <Header />
       <div className='wrapper'>
         <CityList key="cityList" />

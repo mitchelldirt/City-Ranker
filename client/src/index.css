@@ -26,7 +26,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -52,4 +51,9 @@ button {
 
 button:hover {
   border-color: blue;
+}
+
+.loginButton:hover {
+  border: none;
+  border-color: transparent;
 }

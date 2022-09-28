@@ -1,5 +1,15 @@
 import { supabase } from './supabaseClient';
 
+export async function verifySession() {
+    const result = await supabase.auth.getSession();
+    return result !== null ? true : false;
+}
+
+export async function logOut() {
+    const { error } = await supabase.auth.signOut()
+    location.reload()
+}
+
 export async function getProfile(user) {
     const { data, error } = await supabase.from('profiles').select('*').eq('id', user.user.id)
     return data;
@@ -17,7 +27,7 @@ export async function initializeProfile(user) {
 export async function setInitialCityList() {
     const data = await supabase.auth.getSession();
     console.log(data)
-    if (data.data.session.user) {
+    if (data.data.session) {
         const profile = await getProfile(data.data.session);
         console.log(profile)
         const cityList = await profile[0].city_list;

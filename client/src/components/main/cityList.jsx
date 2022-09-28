@@ -5,11 +5,6 @@ import getWalkscore from '../../services/walkscore'
 import ScoresContainer from './cityRow/ScoresContainer';
 import CityImage from './cityRow/cityImage'
 import { setInitialCityList, updateUserCityList } from '../../services/supabaseFunctions'
-let nextId = 3;
-
-// Avoiding top level await for compatibility. Using an async IIFE 
-let initialCityList = setInitialCityList();
-
 
 // Use the user input (should be a city name) to call 3 APIs and create the city object
 async function createCityObject(userInput) {
@@ -23,7 +18,7 @@ async function createCityObject(userInput) {
         walkScore: scores.walkScore,
         bikeScore: scores.bikeScore,
         transitScore: +scores.transitScore,
-        id: nextId++
+        id: new Date().getTime()
     }
 
     return city;
@@ -36,7 +31,8 @@ export default function CityList() {
     // Fetch the initial list either off a user or from the default I set then when it's ready set it.
     useEffect(() => {
         setInitialCityList().then(data => {
-            setCities(JSON.parse(data))
+            const list = JSON.parse(data)
+            setCities(list)
         });
     }, []);
 
@@ -44,7 +40,8 @@ export default function CityList() {
     useEffect(() => {
         // Update the users list in supabase
         if (cities !== null) {
-        updateUserCityList(cities)}
+            updateUserCityList(cities)
+        }
     });
 
     // if initial city list isn't ready show Loading...
@@ -54,30 +51,33 @@ export default function CityList() {
 
     return (
         <>
-            <div style={{
-                display: 'flex',
-                alignItems: 'center'
+            <form onSubmit={async (e) => {
+                e.preventDefault();
             }}>
-                <input
-                    className='searchBar'
-                    placeholder='Type a city name and hit the +'
-                    aria-label='Input box for a city name to add to the list'
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                />
-                <button id='addButton' aria-label='Plus symbol button to add a city to the city' onClick={async () => {
-                    if (name === '') {
-                        return;
-                    }
-                    setName('');
-                    let city = await createCityObject(name);
-                    setCities([
-                        ...cities,
-                        city
-                    ]);
-                }}><img aria-labelledby='addButton' style={{ width: '30px', height: '30px' }} src='/assets/addButton.svg' /></button>
-            </div>
-
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center'
+                }}>
+                    <input
+                        className='searchBar'
+                        placeholder='Type a city name and hit the +'
+                        aria-label='Input box for a city name to add to the list'
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
+                    <button id='addButton' aria-label='Plus symbol button to add a city to the city' onClick={async () => {
+                        if (name === '') {
+                            return;
+                        }        
+                        setName('');
+                        let city = await createCityObject(name);
+                        setCities([
+                            ...cities,
+                            city
+                        ]);
+                    }}><img aria-labelledby='addButton' style={{ width: '30px', height: '30px' }} src='/assets/addButton.svg' /></button>
+                </div>
+            </form>
             <ol style={{
                 display: 'flex',
                 flexDirection: 'column',

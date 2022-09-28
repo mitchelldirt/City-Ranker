@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+ol {
+  padding-inline-start: 0;
+}
+
 li {
   list-style: none;
 }
@@ -20,6 +24,12 @@ p {
 
 h1 {
   width: fit-content;
+}
+
+.login {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 .searchBar {
