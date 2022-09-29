@@ -25,8 +25,14 @@ export default function Auth() {
         <div className="row flex-center flex">
             <div className="col-6 form-widget" aria-live="polite">
                 <h1 className="signInHeader">Sign In</h1>
-                <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-                    <button style={{ width: 'fit-content' }} onClick={signInWithGithub}><img style={{ width: '40px' }} src='/assets/githubLogo.png' /></button>
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                    <button
+                        style={{ width: 'fit-content' }}
+                        onClick={signInWithGithub}>
+                        <img
+                            style={{ width: '40px' }}
+                            src='/assets/githubLogo.png' />
+                    </button>
                 </div>
                 <p className="description">
                     Sign in via 🪄 magic link 🔮 with your email below
@@ -55,7 +61,9 @@ export default function Auth() {
                                 Cancel Login
                             </button>
                         </a>
+
                     </>
+
                 )}
             </div>
         </div>

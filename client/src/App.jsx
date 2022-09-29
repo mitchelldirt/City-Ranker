@@ -15,16 +15,17 @@ function App() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
 
-      if (session){
-      let profileDataLength;
-      let profileData = getProfile(session).then(
-        res => res.length
-      ).then(res => {
-        if (res === 0) {
-          initializeProfile(session)
-        }
-      })
-  }})
+      if (session) {
+        let profileDataLength;
+        let profileData = getProfile(session).then(
+          res => res.length
+        ).then(res => {
+          if (res === 0) {
+            initializeProfile(session)
+          }
+        })
+      }
+    })
 
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
@@ -33,7 +34,7 @@ function App() {
 
   return (
     <div className="App">
-      {session ? <LogOut onClick={logOut}/> : <LogIn />}
+      {session ? <LogOut onClick={logOut} /> : <LogIn />}
       <Header />
       <div className='wrapper'>
         <CityList key="cityList" />

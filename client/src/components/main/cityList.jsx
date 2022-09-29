@@ -68,7 +68,7 @@ export default function CityList() {
                     <button id='addButton' aria-label='Plus symbol button to add a city to the city' onClick={async () => {
                         if (name === '') {
                             return;
-                        }        
+                        }
                         setName('');
                         let city = await createCityObject(name);
                         setCities([

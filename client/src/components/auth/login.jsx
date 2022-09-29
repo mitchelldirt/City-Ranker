@@ -1,5 +1,3 @@
-
-
 export default function LogIn() {
     return (
         <a className='login' href='/login'>
@@ -13,7 +11,7 @@ export default function LogIn() {
                 <button className='loginButton' style={{ color: 'black', fontWeight: 'bold', fontSize: '10px' }}>
                     LOGIN
                 </button>
-                <img style={{cursor: 'pointer', width: '24px'}} src='/assets/login.svg' />
+                <img style={{ cursor: 'pointer', width: '24px' }} src='/assets/login.svg' />
             </div>
         </a>
     )
