@@ -10,10 +10,10 @@ export default function LogIn() {
                 alignItems: 'center',
                 padding: '5px'
             }}>
-                <button className='loginButton' style={{ color: 'black', fontWeight: 'bold' }}>
+                <button className='loginButton' style={{ color: 'black', fontWeight: 'bold', fontSize: '10px' }}>
                     LOGIN
                 </button>
-                <img style={{cursor: 'pointer'}} src='/assets/login.svg' />
+                <img style={{cursor: 'pointer', width: '24px'}} src='/assets/login.svg' />
             </div>
         </a>
     )

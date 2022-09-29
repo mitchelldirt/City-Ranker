@@ -10,10 +10,10 @@ export default function LogOut({onClick}) {
                 alignItems: 'center',
                 padding: '5px'
             }}>
-                <button className='loginButton' style={{ color: 'black', fontWeight: 'bold' }}>
+                <button className='loginButton' style={{ color: 'black', fontWeight: 'bold', fontSize: '10px' }}>
                     LOGOUT
                 </button>
-                <img style={{cursor: 'pointer'}} src='/assets/logout.svg' />
+                <img style={{cursor: 'pointer', width: '24px'}} src='/assets/logout.svg' />
             </div>
         </a>
     )

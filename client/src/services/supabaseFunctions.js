@@ -5,6 +5,12 @@ export async function verifySession() {
     return result !== null ? true : false;
 }
 
+export async function signInWithGithub() {
+    const { user, session, error } = await supabase.auth.signInWithOAuth({
+        provider: 'github',
+    })
+}
+
 export async function logOut() {
     const { error } = await supabase.auth.signOut()
     location.reload()
