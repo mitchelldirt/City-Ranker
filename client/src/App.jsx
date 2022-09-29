@@ -22,6 +22,7 @@ function App() {
         ).then(res => {
           if (res === 0) {
             initializeProfile(session)
+            location.reload();
           }
         })
       }
