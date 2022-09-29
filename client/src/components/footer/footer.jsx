@@ -1,6 +1,7 @@
 import Attribution from './attribution';
 import ShamelessPlug from './shamelessPlug';
 
+// Using this data to throw content into my footer
 const attributions = [
     { resourceSrc: 'https://www.walkscore.com/professional/', imgSrc: '/assets/walkscoreLogo.png', aria: 'Walkscore website which is used to get data on walking, biking, and transit for a city', id: 0 },
     { resourceSrc: 'https://www.pexels.com', imgSrc: 'https://images.pexels.com/lib/api/pexels.png', aria: 'Pexels website used to get stock images', id: 1 },
@@ -17,8 +18,10 @@ const footerStyles = {
     position: 'fixed',
     left: '0',
     bottom: '0',
-    width: '100%'
+    width: '100%',
+    backdropFilter: 'blur(4px)'
 }
+
 export default function Footer() {
     return (
         <>

@@ -1,9 +1,4 @@
-export default function CityImage({imgURL}) {
-    const imageStyles = {
-        width: '200px',
-        height: '200px',
-        alignSelf: 'center'
-    }
+export default function CityImage({ imgURL }) {
     return (
         <>
             <img alt='Image of the city mentioned on this city card' className='cityImage' src={imgURL} />
