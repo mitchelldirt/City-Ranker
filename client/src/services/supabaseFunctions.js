@@ -62,3 +62,7 @@ export async function updateUserCityList(cityList) {
     }
     return;
 }
+
+export function refreshPage() {
+    window.location.reload(false);
+}
