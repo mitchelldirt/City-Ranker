@@ -1,0 +1,339 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+ol {
+  padding-inline-start: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: black;
+}
+
+p {
+  height: fit-content;
+  width: fit-content;
+}
+
+h1 {
+  width: fit-content;
+}
+
+.login {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.searchBar {
+  border-radius: 25px;
+  width: 300px;
+  height: 30px;
+}
+
+.cardNav {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.cardButton {
+  width: 48px;
+  height: 48px;
+}
+
+.scoreContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scoresContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.scoreContainer > img {
+  width: 25px;
+  height: 25px;
+}
+
+.card {
+  display: flex;
+  height: fit-content;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 25px;
+  margin: 0;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cityNameDesktop {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.cityNameMobile {
+  font-size: 1.5em;
+  font-weight: bold;
+  display: none;
+}
+
+.cityImage {
+  width: 200px;
+  height: 200px;
+  align-self: center;
+  border-radius: 25px;
+}
+
+.nonScoresDiv {
+  display: flex;
+}
+
+.plugContainer {
+  display: flex;
+  align-items: center;
+}
+
+.plugName {
+  font-size: 2em;
+  margin: 0;
+}
+
+.plugImageContainer {
+  width: 40px;
+  margin-left: 5px;
+}
+
+.wrapper {
+  min-height: 100%;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+circle {
+  transition: all 0.7s ease-in-out;
+}
+
+@media (max-width: 1000px) {
+  .cityNameDesktop {
+    display: none;
+  }
+
+  .cityNameMobile {
+    display: block;
+  }
+
+  .card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nonScoresDiv {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .plugName {
+    font-size: 1.5em;
+  }
+
+  .plugImageContainer {
+    width: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  #root {
+    padding: 0.5rem;
+  }
+
+  .searchBar {
+    width: 200px;
+  }
+
+  .nonScoresDiv {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .scoresContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .scoreContainer {
+    flex-direction: row;
+  }
+
+  .cityImage {
+    width: 150px;
+    height: 150px;
+  }
+
+  .plugName {
+    font-size: 1em;
+  }
+
+  .plugImageContainer {
+    width: 20px;
+  }
+}
+
+.row {
+  position: relative;
+  width: 100%;
+}
+.row [class^="col"] {
+  float: left;
+  margin: 0.5rem 2%;
+  min-height: 0.125rem;
+}
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+  width: 96%;
+}
+.col-1-sm {
+  width: 4.33%;
+}
+.col-2-sm {
+  width: 12.66%;
+}
+.col-3-sm {
+  width: 21%;
+}
+.col-4-sm {
+  width: 29.33%;
+}
+.col-5-sm {
+  width: 37.66%;
+}
+.col-6-sm {
+  width: 46%;
+}
+.col-7-sm {
+  width: 54.33%;
+}
+.col-8-sm {
+  width: 62.66%;
+}
+.col-9-sm {
+  width: 71%;
+}
+.col-10-sm {
+  width: 79.33%;
+}
+.col-11-sm {
+  width: 87.66%;
+}
+.col-12-sm {
+  width: 96%;
+}
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.flex {
+  display: flex;
+}
+
+button,
+.button {
+  color: var(--custom-color);
+  border: var(--custom-border);
+  background-color: var(--custom-bg-color);
+  display: inline-block;
+  text-align: center;
+  border-radius: var(--custom-border-radius);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+button.primary,
+.button.primary {
+  background-color: var(--custom-color-brand);
+  border: 1px solid var(--custom-color-brand);
+}
+
+.form-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-widget > .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  background-color: #444444;
+  text-transform: none !important;
+  transition: all 0.2s ease;
+}
+
+.form-widget .button:hover {
+  border-color: blue;
+}
+
+.form-widget .button > .loader {
+  width: 17px;
+  animation: spin 1s linear infinite;
+  filter: invert(1);
+}
+
+.loginInput {
+  width: 100%;
+  border-radius: 5px;
+  border: black 1px solid;
+  padding: 8px;
+  font-size: 0.9rem;
+  background-color: var(--custom-bg-color);
+  color: var(--custom-color);
+}
+
+.signInHeader {
+  text-align: center;
+  width: unset;
+}
+
+.description {
+  color: black;
+  font-weight: 500;
+}
