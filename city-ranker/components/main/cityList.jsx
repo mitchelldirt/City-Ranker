@@ -75,7 +75,7 @@ export default function CityList() {
                             ...cities,
                             city
                         ]);
-                    }}><img aria-labelledby='addButton' style={{ width: '30px', height: '30px' }} src='/assets/addButton.svg' /></button>
+                    }}><img aria-labelledby='addButton' style={{ width: '30px', height: '30px' }} src='/addButton.svg' /></button>
                 </div>
             </form>
             <ol style={{
@@ -90,7 +90,7 @@ export default function CityList() {
                         <li className='card' key={city.id} >
                             <p className='cityNameMobile'>{city.cityName}</p>
                             <div className='nonScoresDiv'>
-                                <button id={'deleteButton'.concat(city.id)} aria-label='Trash can button to delete a city from the list' style={{ alignSelf: 'center' }} onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img aria-labelledby={'deleteButton'.concat(city.id)} src='/assets/delete.svg' className='cardButton' /></button>
+                                <button id={'deleteButton'.concat(city.id)} aria-label='Trash can button to delete a city from the list' style={{ alignSelf: 'center' }} onClick={() => { setCities(cities.filter(c => c.id !== city.id)) }}><img aria-labelledby={'deleteButton'.concat(city.id)} src='/delete.svg' className='cardButton' /></button>
 
                                 <div className='cardNav'>
                                     <button id={'upArrow'.concat(city.id)} aria-label='Up arrow button to move a city up one in the list' onClick={() => {
@@ -102,7 +102,7 @@ export default function CityList() {
                                             setCities(nextCities);
                                         }
                                         return;
-                                    }}><img aria-labelledby={'upArrow'.concat(city.id)} src='/assets/upArrow.svg' className='cardButton' /></button>
+                                    }}><img aria-labelledby={'upArrow'.concat(city.id)} src='/upArrow.svg' className='cardButton' /></button>
                                     <button id={'downArrow'.concat(city.id)} aria-label='Down arrow button to move a city down one in the list' onClick={() => {
                                         let insertAt = cities.indexOf(city) + 1;
                                         let nextCities = [...cities]
@@ -112,7 +112,7 @@ export default function CityList() {
                                             setCities(nextCities);
                                         }
                                         return;
-                                    }}><img aria-labelledby={'downArrow'.concat(city.id)} src='/assets/downArrow.svg' className='cardButton' /></button>
+                                    }}><img aria-labelledby={'downArrow'.concat(city.id)} src='/downArrow.svg' className='cardButton' /></button>
 
                                 </div>
                                 <CityImage imgURL={city.imageURL} />

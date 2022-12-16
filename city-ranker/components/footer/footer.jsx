@@ -3,9 +3,9 @@ import ShamelessPlug from './shamelessPlug';
 
 // Using this data to throw content into my footer
 const attributions = [
-    { resourceSrc: 'https://www.walkscore.com/professional/', imgSrc: '/assets/walkscoreLogo.png', aria: 'Walkscore website which is used to get data on walking, biking, and transit for a city', id: 0 },
+    { resourceSrc: 'https://www.walkscore.com/professional/', imgSrc: '/walkScoreLogo.png', aria: 'Walkscore website which is used to get data on walking, biking, and transit for a city', id: 0 },
     { resourceSrc: 'https://www.pexels.com', imgSrc: 'https://images.pexels.com/lib/api/pexels.png', aria: 'Pexels website used to get stock images', id: 1 },
-    { resourceSrc: 'https://developers.google.com/fonts/faq', imgSrc: '/assets/googleFontsLogo.png', aria: 'Google Fonts FAQ website which includes the license and links to finding free fonts and icons (I\'ve used the icons in this website.', id: 2 }
+    { resourceSrc: 'https://developers.google.com/fonts/faq', imgSrc: '/googleFontsLogo.png', aria: 'Google Fonts FAQ website which includes the license and links to finding free fonts and icons (I\'ve used the icons in this website.', id: 2 }
 ]
 
 

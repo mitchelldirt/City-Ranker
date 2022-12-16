@@ -12,7 +12,7 @@ export default function ShamelessPlug() {
                     <p className='plugName'>MitchellDirt
                     </p></a>
                 <a className='plugImageContainer' target='_blank' href='https://github.com/mitchelldirt/City-Ranker'>
-                    <img alt='GitHub Logo' style={img} src='/assets/githubLogo.png' /></a>
+                    <img alt='GitHub Logo' style={img} src='/githubLogo.png' /></a>
             </div>
         </>
     )

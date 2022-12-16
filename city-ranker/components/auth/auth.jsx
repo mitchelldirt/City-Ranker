@@ -31,7 +31,7 @@ export default function Auth() {
                         onClick={signInWithGithub}>
                         <img
                             style={{ width: '40px' }}
-                            src='/assets/githubLogo.png' />
+                            src='/githubLogo.png' />
                     </button>
                 </div>
                 <p className="description">

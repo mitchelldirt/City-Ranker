@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Attribution({ imgSrc, aria }) {
     const imageStyles = {
         width: '100%',
@@ -8,7 +10,7 @@ export default function Attribution({ imgSrc, aria }) {
 
     return (
         <>
-            <img aria-labelledby={aria} style={imageStyles} src={imgSrc} />
+            <img alt='Tech Company Logo' aria-labelledby={aria} style={imageStyles} src={imgSrc} />
         </>
     )
 }

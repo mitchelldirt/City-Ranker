@@ -6,41 +6,16 @@ import { supabase } from '../services/supabaseClient'
 import { getProfile, initializeProfile, setInitialCityList, verifySession, logOut, refreshPage } from '../services/supabaseFunctions'
 import LogIn from '../components/auth/login'
 import LogOut from '../components/auth/logout'
+import App from '../components/App'
+import React from 'react';
 
-function App() {
-  const [session, setSession] = useState(null)
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-
-      if (session) {
-        let profileDataLength;
-        let profileData = getProfile(session).then(
-          res => res.length
-        ).then(res => {
-          if (res === 0) {
-            initializeProfile(session)
-          }
-        })
-      }
-    })
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
-
+function Index() {
   return (
-    <div className="App">
-      {session ? <LogOut onClick={logOut} /> : <LogIn />}
-      <Header />
-      <div className='wrapper'>
-        <CityList key="cityList" />
-      </div>
-      <Footer />
-    </div>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
   )
 }
 
-export default App
+export default Index
