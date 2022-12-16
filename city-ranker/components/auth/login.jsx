@@ -1,6 +1,6 @@
 export default function LogIn() {
     return (
-        <a className='login' href='/login'>
+        <a className='login' href='/auth'>
             <div style={{
                 border: '1px solid black',
                 borderRadius: '25px',
