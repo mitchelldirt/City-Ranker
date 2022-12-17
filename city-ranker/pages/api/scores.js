@@ -7,7 +7,7 @@ export default function handler(request, response) {
     method: 'GET'
   };
 
-  let url = `https://api.walkscore.com/score?format=json&address=${address}&lat=${lat}&lon=${lon}&transit=1&bike=1&wsapikey=${process.env.WALKSCORE}`;
+  let url = `https://api.walkscore.com/score?format=json&address=${address}&lat=${lat}&lon=${lon}&transit=1&bike=1&wsapikey=${process.env.NEXT_PUBLIC_WALKSCORE}`;
   console.log(url)
 
   fetch(url, options)
