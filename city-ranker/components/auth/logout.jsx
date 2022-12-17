@@ -1,6 +1,8 @@
+import Link from 'next/link'
+
 export default function LogOut({ onClick }) {
     return (
-        <a className='login' onClick={onClick}>
+        <Link className='login' onClick={onClick}>
             <div style={{
                 border: '1px solid black',
                 borderRadius: '25px',
@@ -13,6 +15,6 @@ export default function LogOut({ onClick }) {
                 </button>
                 <img style={{ cursor: 'pointer', width: '24px' }} src='/logout.svg' />
             </div>
-        </a>
+        </Link>
     )
 }

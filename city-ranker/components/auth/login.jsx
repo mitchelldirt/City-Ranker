@@ -1,6 +1,8 @@
+import Link from 'next/link'
+
 export default function LogIn() {
     return (
-        <a className='login' href='/auth'>
+        <Link className='login' href='/auth'>
             <div style={{
                 border: '1px solid black',
                 borderRadius: '25px',
@@ -13,6 +15,6 @@ export default function LogIn() {
                 </button>
                 <img style={{ cursor: 'pointer', width: '24px' }} src='/login.svg' />
             </div>
-        </a>
+        </Link>
     )
 }

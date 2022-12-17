@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { supabase } from '../services/supabaseClient.js'
-import { signInWithGithub } from '../services/supabaseFunctions'
+import { supabase } from '../../services/supabaseClient.js'
+import { signInWithGithub } from '../../services/supabaseFunctions'
+import Link from 'next/link';
 
 export default function Auth() {
     const [loading, setLoading] = useState(false)
@@ -55,12 +56,12 @@ export default function Auth() {
                                 Send magic link
                             </button>
                         </form>
-                        <a href='/'>
+                        <Link href='/'>
                             <button
                                 style={{ fontWeight: 'bold', marginTop: '10px', backgroundColor: 'black', color: 'white' }}>
                                 Cancel Login
                             </button>
-                        </a>
+                        </Link>
 
                     </>
 

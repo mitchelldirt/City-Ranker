@@ -1,5 +1,6 @@
 import Attribution from './attribution';
 import ShamelessPlug from './shamelessPlug';
+import Link from 'next/link'
 
 // Using this data to throw content into my footer
 const attributions = [
@@ -27,12 +28,12 @@ export default function Footer() {
         <>
             <footer style={footerStyles}>
                 {attributions.map(attr => (
-                    <a id={'attribution'.concat(attr.id)} aria-label={attr.aria} href={attr.resourceSrc} target='_blank' key={attr.id}>
+                    <Link id={'attribution'.concat(attr.id)} aria-label={attr.aria} href={attr.resourceSrc} target='_blank' rel='noreferrer' key={attr.id}>
                         <Attribution
                             imgSrc={attr.imgSrc}
                             aria={'attribution'.concat(attr.id)}
                         />
-                    </a>
+                    </Link>
                 ))}
 
                 <ShamelessPlug />
