@@ -4,7 +4,7 @@ export default function handler(request, response) {
   let options = {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_PEXELS}`
+      Authorization: `Bearer ${process.env.PEXELS}`
     }
   };
 
