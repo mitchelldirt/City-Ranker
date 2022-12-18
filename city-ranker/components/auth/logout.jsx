@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function LogOut({ onClick }) {
     return (
-        <Link className='login' onClick={onClick}>
+        <Link href='/' className='login' onClick={onClick}>
             <div style={{
                 border: '1px solid black',
                 borderRadius: '25px',
