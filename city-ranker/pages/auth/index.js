@@ -42,7 +42,7 @@ export default function Auth() {
                     'Sending magic link...'
                 ) : (
                     <>
-                        <form onSubmit={handleLogin}>
+                        <form className='loginTheme' onSubmit={handleLogin}>
                             <label htmlFor="email">Email</label>
                             <input
                                 id="email"
@@ -52,11 +52,11 @@ export default function Auth() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            <button style={{ fontWeight: 'bold', marginTop: '10px', backgroundColor: 'black', color: 'white' }} aria-live="polite">
+                            <button style={{ fontWeight: 'bold', marginTop: '15%', backgroundColor: 'black', color: 'white' }} aria-live="polite">
                                 Send magic link
                             </button>
                         </form>
-                        <Link href='/'>
+                        <Link className='cancelLoginButton' href='/'>
                             <button
                                 style={{ fontWeight: 'bold', marginTop: '10px', backgroundColor: 'black', color: 'white' }}>
                                 Cancel Login

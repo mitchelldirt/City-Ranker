@@ -28,7 +28,7 @@ export default function Footer() {
         <>
             <footer style={footerStyles}>
                 {attributions.map(attr => (
-                    <Link id={'attribution'.concat(attr.id)} aria-label={attr.aria} href={attr.resourceSrc} target='_blank' rel='noreferrer' key={attr.id}>
+                    <Link className='techLogoContainer' id={'attribution'.concat(attr.id)} aria-label={attr.aria} href={attr.resourceSrc} target='_blank' rel='noreferrer' key={attr.id}>
                         <Attribution
                             imgSrc={attr.imgSrc}
                             aria={'attribution'.concat(attr.id)}
