@@ -1,6 +1,6 @@
 import { supabase } from '../../services/supabaseClient';
 
-export default async function handler(response) {
+export default async function handler(request, response) {
   try {
     await supabase.from('profiles').insert([
       { id: 'test1234', username: 'test' }
