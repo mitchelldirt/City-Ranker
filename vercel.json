@@ -1,6 +1,6 @@
 {
   "crons": [{
     "path": "/api/keepSupaAlive",
-    "schedule": "0 0 10 ? * TUE,THU,SAT *"
+    "schedule": "0 10 * * 2,4,6"
   }]
 }
