@@ -6,7 +6,6 @@ export default async function handler(request, response) {
       { id: 'test1234', username: 'test' }
     ])
 
-    await supabase.from('profiles').delete().eq({ id: 'test1234' })
   } catch (error) {
     response.status(500).json({ error: error.message })
   }
