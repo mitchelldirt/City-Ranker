@@ -1,6 +1,6 @@
 {
   "crons": [{
-    "path": "/pages/api/keepSupaAlive",
+    "path": "/api/keepSupaAlive",
     "schedule": "10 10 * * 2,4,6"
   }]
 }
